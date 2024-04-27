@@ -4,15 +4,9 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.geometry.Pose3d;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.util.Color;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -26,13 +20,6 @@ public final class Constants {
 
     public final class USB{
         public static final int DRIVER_CONTROLLER = 0;      // Driver Controller USB ID
-        public static final int OPERATOR_CONTROLLER = 1;    // Operator controller USB ID
-        public static final int OPERATOR_LY = 1;
-        public static final int OPERATOR_LX = 0;
-        public static final int OPERATOR_RY = 5;
-        public static final int OPERATOR_RX = 4;
-        public static final int OPERATOR_RT = 3;
-        public static final int OPERATOR_LT = 2;
     }
 
     public final class ModuleConstants{
@@ -46,6 +33,7 @@ public final class Constants {
         public static final double kPTurning = 0.6;
     }
 
+    //IMPORTANT TO REPLACE THE FOLLOWING CONSTANTS TO MATCH YOUR ROBOT
     public static final class DriveConstants {
         public static final double kTrackWidth = Units.inchesToMeters(23.5);
         // Distance between right and left wheels
@@ -109,86 +97,6 @@ public final class Constants {
         public static final double kSlowButtonTurnModifier = 0.5;
     }
 
-    public static final class IntakeConstants {
-        public static final int frontWheelID = 42;
-        public static final int leftWheelID = 41;
-        public static final int rightWheelID = 40;
-    }
-
-    public static final class LEDConstants {
-        public static final int numLEDsPerStrip = 36;
-        public static final int numLEDsPerColor = 3;
-    }
-
-    public static final class GameConstants {
-        public static final int Robot = 0;
-        public static final int Auto = 1;
-        public static final int TeleOp = 2;
-    }
-
-    public static final class ArmConstants {
-        public static final int leftMotorID = 43;
-        public static final int rightMotorID = 44;
-        public static final double kP =  0.1;
-        public static final double kD =  0.01;
-        public static final double speakerEncoder = -34; //-30;
-        public static final double farSpeakerEncoder = -52; // 50->45, might need to adjust TO-DO
-        public static final double ampEncoder = -150;
-        public static final double armStartingPos = -120; 
-        public static final double armHover = -2;
-    }
-
-    public static final class PoseEstimatorConstants {
-        // See
-        // https://firstfrc.blob.core.windows.net/frc2020/PlayingField/2020FieldDrawing-SeasonSpecific.pdf
-        // page 208
-        public static final double targetWidth = Units.inchesToMeters(41.30) - Units.inchesToMeters(6.70); // meters
-
-        // See
-        // https://firstfrc.blob.core.windows.net/frc2020/PlayingField/2020FieldDrawing-SeasonSpecific.pdf
-        // page 197
-        public static final double targetHeight = Units.inchesToMeters(98.19) - Units.inchesToMeters(81.19); // meters
-
-        // See https://firstfrc.blob.core.windows.net/frc2020/PlayingField/LayoutandMarkingDiagram.pdf
-        // pages 4 and 5
-        public static final double kFarTgtXPos = Units.feetToMeters(54);
-        public static final double kFarTgtYPos = Units.feetToMeters(27 / 2) - Units.inchesToMeters(43.75) - Units.inchesToMeters(48.0 / 2.0);
-        public static final double kFarTgtZPos = (Units.inchesToMeters(98.19) - targetHeight) / 2 + targetHeight;
-
-        public static final Pose3d kFarTargetPose =
-            new Pose3d(
-                new Translation3d(kFarTgtXPos, kFarTgtYPos, kFarTgtZPos),
-                new Rotation3d(0.0, 0.0, Units.degreesToRadians(180))
-        );
-
-        public static final Transform3d kCameraToRobot = 
-            new Transform3d(
-                new Translation3d(-0.33,-0.17,0.36), 
-                new Rotation3d(0,-45,180)
-        );
-    }
-
-    public static final class ClimbConstants {
-        public static final int leftMotorID = 50;
-        public static final int rightMotorID = 51;
-        public static final double kP =  1 / 1;
-    }
-
-    public static final class AutoConstants {
-        public static final double kMaxSpeedMetersPerSecond = DriveConstants.kPhysicalMaxSpeedMetersPerSecond / 8;
-        public static final double kMaxAngularSpeedRadiansPerSecond = DriveConstants.kPhysicalMaxAngularSpeedRadiansPerSecond / 10;
-        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-        public static final double kMaxAngularAccelerationRadiansPerSecondSquared = Math.PI / 4;
-        public static final double kPXController = 1.5;
-        public static final double kPYController = 1.5;
-        public static final double kPThetaController = 3;
-
-        public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
-            new TrapezoidProfile.Constraints(
-                kMaxAngularSpeedRadiansPerSecond,
-                kMaxAngularAccelerationRadiansPerSecondSquared);
-    }
-
     public static final class OIConstants {
         public static final int kDriverControllerPort = 0;
 
@@ -222,17 +130,5 @@ public final class Constants {
         public static final int RT = 3;
         public static final int RX = 4;
         public static final int RY = 5;
-    }
-
-    public static final class Colors {
-        public static final Color red = Color.kRed;
-        public static final Color blue = Color.kBlue;
-        public static final Color green = new Color(0, 255, 0);
-        public static final Color white = Color.kWhite;
-        public static final Color uRed = new Color(20, 0 , 0);
-        public static final Color uDarkOrange = new Color(254,17,1);
-        public static final Color uGreen = new Color(0, 7, 0);
-        public static final Color uOrange = new Color(255, 25, 0);
-        public static final Color[] uColors = {uRed, uDarkOrange, uGreen, uOrange};
     }
 }
